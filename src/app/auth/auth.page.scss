@@ -1,0 +1,43 @@
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+@media (min-width: 700px) {
+  .content {
+    padding: 2rem 15rem 2rem 15rem;
+  }
+}
+
+.phoneForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  p {
+    margin: 0;
+    padding: 1rem 0;
+  }
+
+  ion-input {
+    border-radius: 0.5rem;
+    border: 1px solid grey;
+  }
+}
+
+.buttonHolder {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+
+  ion-button {
+    --border-radius: 0.5rem;
+    text-transform: none;
+    margin: 0;
+  }
+}
