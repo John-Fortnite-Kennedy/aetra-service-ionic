@@ -1,0 +1,7 @@
+{
+  "name": "aetra-service-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
