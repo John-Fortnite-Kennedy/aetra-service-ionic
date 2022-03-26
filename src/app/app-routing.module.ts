@@ -8,16 +8,29 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'auth',
     pathMatch: 'full'
-  },  {
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
+  },  {
+    path: 'gate',
+    loadChildren: () => import('./gate/gate.module').then( m => m.GatePageModule)
   },
+  {
+    path: 'adminboard',
+    loadChildren: () => import('./adminboard/adminboard.module').then( m => m.AdminboardPageModule)
+  },
+  {
+    path: 'masterboard',
+    loadChildren: () => import('./masterboard/masterboard.module').then( m => m.MasterboardPageModule)
+  },
+
 
 ];
 

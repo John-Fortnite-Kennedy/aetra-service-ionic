@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  login;
+  password;
+
+  constructor(public api: ApiService, public router: Router) { }
 
   ngOnInit() {
+  }
+
+  tryAuth(login, password){
+    var data = {
+      "login": login,
+      "password": password
+    }
+    var response = this.api.sendPostRequest(data, "/common/login")
+    response.subscribe(data => {
+      sessionStorage.setItem('manager_access_data', JSON.stringify(data['payload']))
+      console.log(data['payload'])
+      this.router.navigateByUrl('/gate');
+    }, error => {
+      // Add if login and password is incorrect.
+      this.api.errorHandler(error.status);
+    })
   }
 
   validation_messages = {
