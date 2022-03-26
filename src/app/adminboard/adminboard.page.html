@@ -5,5 +5,12 @@
 </ion-header>
 
 <ion-content>
-
+  <div *ngIf="this.currentRequests.length>0">
+    <div *ngFor="let item of this.currentRequests">
+      {{item.id}}
+    </div>
+  </div>
+  <div *ngIf="this.currentRequests.length==0">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
 </ion-content>
