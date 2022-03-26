@@ -18,7 +18,8 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
-  },  {
+  },
+  {
     path: 'gate',
     loadChildren: () => import('./gate/gate.module').then( m => m.GatePageModule)
   },

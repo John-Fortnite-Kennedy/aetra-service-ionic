@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { webSocket } from 'rxjs/webSocket';
 import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-adminboard',
@@ -11,8 +13,28 @@ export class AdminboardPage implements OnInit {
 
   currentRequests = [];
 
+  admin_access_data
 
-  constructor(private menu: MenuController) { 
+
+  constructor(private menu: MenuController, public router: Router, public api: ApiService) { 
+
+    // Configure router
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    }
+    this.router.onSameUrlNavigation = 'reload';
+
+    if (sessionStorage.getItem("manager_access_data") === null) {
+      this.router.navigateByUrl('/gate')
+    }
+
+    // Get access data from session
+    this.admin_access_data = JSON.parse(sessionStorage.getItem("manager_access_data"))
+    console.log(this.admin_access_data)
+
+    this.api.myjwt = this.admin_access_data.jwt
+    this.api.router = this.router
+
     this.connectToWebsocket()
   }
 
