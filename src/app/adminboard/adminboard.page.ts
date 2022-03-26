@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { webSocket } from 'rxjs/webSocket';
 import { MenuController } from '@ionic/angular';
 
@@ -9,7 +9,8 @@ import { MenuController } from '@ionic/angular';
 })
 export class AdminboardPage implements OnInit {
 
-  currentRequests = []
+  currentRequests = [];
+
 
   constructor(private menu: MenuController) { 
     this.connectToWebsocket()
@@ -81,6 +82,13 @@ export class AdminboardPage implements OnInit {
   openMenu(){
     this.menu.enable(true);
     this.menu.open();
+  }
+
+  onClose() {
+    var fabs = document.querySelectorAll('ion-fab');
+    for (var i = 0; i < fabs.length; i++) {
+      fabs[i].activated = false;
+    }
   }
 
   ngOnInit() {

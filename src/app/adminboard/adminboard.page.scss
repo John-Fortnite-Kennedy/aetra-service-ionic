@@ -1,55 +1,106 @@
+.searchBox{
+    width: 100%;
+    padding-top: 1rem;
+    justify-content: space-between;
+    
+    display: flex;
+
+    ion-searchbar{
+        width: 60%;
+        height: 100%;
+        --box-shadow: none;
+        border: 0.1rem solid lightgray;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    }
+
+    button{
+        display: flex;
+        align-items: center;
+        background-color: #FFFFFF;
+        border-radius: 0.5rem;
+        border: 0.1rem solid lightgray;
+        --box-shadow: none;
+        color: #8D949F;
+        padding: 0.5rem;
+        font-size: 1.1rem;
+    }
+}
+
 .table{
     width: 100%;
+
+    tr td:first-child{
+        padding-left: 0.2rem;
+    }
+
+    tr td:last-child{
+        padding-right: 0.2rem;
+    }
     
 
     .headers{
         border-bottom: 0.1rem solid #F5F5F5;
         height: 5rem;
         
+       
 
         th{
             text-align: start;
-            min-width: 2rem;
+            
         }
     }
 
+    .cab{
+        min-width: 8rem;
+        width: 90%;
+        padding-left: 10%;   
+    }
+
     .data{
-        height: 3rem;
+        height: 4rem;
         color: #828A96;
+        
 
         td{
-            min-width: 2rem;
+
+            ion-button{
+                --padding-top:1rem;
+                --padding-bottom:1rem;
+                width: 80%;
+            }
+            
             
             .Wanted{
-                background-color: #DC3545;
+                --background: #3880ff;
                 color: #FFFFFF;
             }
             .Sent{
-                background-color: #F2F4F8;
+                --background: #F2F4F8;
                 color: #466A98;
             }
             .inProcess{
-                background-color: #F2F4F8;
+                --background: #F2F4F8;
                 color: #466A98;
             }
             .Done{
-                background-color: #46AA2B;
+                --background: #46AA2B;
                 color: #FFFFFF;
             }
             .Wait{
-                background-color: #F2F4F8;
+                --background: #F2F4F8;
                 color: #466A98;
             }
             .Completed{
-                background-color: #F2F4F8;
+                --background: #F2F4F8;
                 color: #466A98;
             }
             .Delayed{
-                background-color: #DC3545;
+                --background: #DC3545;
                 color: #FFFFFF;
             }
             .Choose{
-                background-color: #F2F4F8;
+                --background: #F2F4F8;
                 color: #466A98;
             }
 
@@ -57,15 +108,41 @@
                 display: flex;
                 flex-direction: column;
             }
+
+            button{
+
+            }
         }
+
+        
     }
+
+    .data:hover {
+        background-color: #F7F7F7;
+        color: black;
+        
+        
+        box-shadow:  -20px 20px 60px #bebebe,
+             20px -20px 60px #ffffff;
+        transform: translate3d(6px, -6px, 0);
+        
+        transition-delay: 0s;
+        transition-duration: 0.4s;
+         transition-property: all;
+        transition-timing-function: line;
+      }
+      
 }
+
+
 
 .center {
     text-align: center !important;
 
     ion-button{
         text-transform: none;
+        font-size: 0.8rem;
+        overflow-wrap: break-word;
     }
 }
 
@@ -100,6 +177,7 @@
   
       ion-icon{
         font-size: 2rem;
+        color: white;
       }
     }
   }
@@ -108,4 +186,18 @@
     --width:20%;
     --background:white;
     
+  }
+
+  ion-fab{
+      position: relative;
+      transform: scale(0.8);
+
+      ion-fab-list ion-fab-button{
+        transform: scale(1.8);
+        width: 8rem;
+        font-size: 0.6rem;
+        --border-radius: 1rem;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+      }
   }

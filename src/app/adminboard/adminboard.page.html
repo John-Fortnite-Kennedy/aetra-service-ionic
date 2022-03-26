@@ -24,19 +24,22 @@
       <ion-icon name="chevron-forward-outline"></ion-icon>
     </div>
   </div>
-  <div *ngIf="this.currentRequests.length>0" style="padding-left: 2.5%;
-    padding-right: 2.5%;width:100%;">
+  <div *ngIf="this.currentRequests.length>0" style="padding-left: 2.5%;padding-right: 2.5%;width:100%;display: flex;flex-direction: column;">
+    <div class="searchBox">
+      <ion-searchbar></ion-searchbar>
+      <button><ion-icon name="filter-outline"></ion-icon>&nbsp; Фильтр</button>
+    </div>
     <table class="table">
       <tr class="headers">
         <th>№</th>
-        <th>Кабинет</th>
+        <th><div class="cab">Кабинет</div></th>
         <th>Сервис</th>
         <th class="center">Заявитель</th>
         <th class="center">Статус</th>
-        <th></th>
+        
         <th>Заявление</th>
         <th class="end">Время создания</th>
-        <th></th>
+        
         <th class="end">Последнее Обновление</th>
       </tr>
       <tr class="data" *ngFor="let item of this.currentRequests">
@@ -44,7 +47,7 @@
           {{item.id}}
         </td>
         <td>
-          {{item.zone.name}}
+          <div class="cab">{{item.zone.name}}</div>
         </td>
         <td>
           {{item.spec.name.String}}
@@ -58,26 +61,39 @@
           </div>
         </td>
         <td class="center">
-          <ion-badge *ngIf="item.badge == 1" class="Wanted">Требуется специалист</ion-badge>
-          <ion-badge *ngIf="item.badge == 2" class="Sent">Отправлено специалисту</ion-badge>
-          <ion-badge *ngIf="item.badge == 3" class="inProcess">В процессе</ion-badge>
-          <ion-badge *ngIf="item.badge == 4" class="Done">Специлист выполнил</ion-badge>
-          <ion-badge *ngIf="item.badge == 5" class="Wait">Ждем подтверждения</ion-badge>
-          <ion-badge *ngIf="item.badge == 6" class="Completed">Выполнено</ion-badge>
-          <ion-badge *ngIf="item.badge == 7" class="Delayed">Отсрочено</ion-badge>
-          <ion-badge *ngIf="item.badge == 8" class="Choose">Выбрать специалиста</ion-badge>
+          <ion-button *ngIf="item.badge == 1" class="Wanted">Требуется специалист</ion-button>
+          <ion-button *ngIf="item.badge == 2" disabled="true" class="Sent">Отправлено специалисту</ion-button>
+          <ion-button *ngIf="item.badge == 3" disabled="true" class="inProcess">В процессе</ion-button>
+          <ion-button *ngIf="item.badge == 4" class="Done">Специлист выполнил</ion-button>
+          <ion-button *ngIf="item.badge == 5" disabled="true" class="Wait">Ждем подтверждения</ion-button>
+          <ion-button *ngIf="item.badge == 6" disabled="true" class="Completed">Выполнено</ion-button>
+          <ion-button *ngIf="item.badge == 7" disabled="true" class="Delayed">Отсрочено</ion-button>
+          <ion-button *ngIf="item.badge == 8" disabled="true" class="Choose">Выбрать специалиста</ion-button>
         </td>
+        <!--
         <td class="center">
-          <ion-button *ngIf="item.badge == 1">Направить специалиста</ion-button>
-          <ion-button *ngIf="item.badge == 4">Подтвердить выполнение</ion-button>
+          
+          <ion-fab class="fab" (click)="onClose()">
+            <ion-fab-button>
+              <ion-icon name="settings"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="end">
+              <ion-fab-button *ngIf="item.badge == 1">Направить специалиста</ion-fab-button>
+              <ion-fab-button *ngIf="item.badge == 4">Подтвердить выполнение</ion-fab-button>
+            </ion-fab-list>
+          </ion-fab>
+          
+          <button *ngIf="item.badge == 1">Направить специалиста</button>
+          <button *ngIf="item.badge == 4">Подтвердить выполнение</button>
         </td>
+        -->
         <td>
           {{item.text}}
         </td>
         <td class="end">
           {{item.createdTime}}
         </td>
-        <td></td>
+        
         <td class="end">
           {{item.lastUpdatedTime}}
         </td>
