@@ -1,14 +1,88 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>adminboard</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-menu side="start" content-id="main-content" max-edge-start="50">
+  <ion-content class="menuContent">
+    
+      <ion-list lines="full" class="list">
+        <ion-item>
+          <ion-icon name="home" slot="start" class="mi"></ion-icon>
+          <ion-label>Главная</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="albums" slot="start" class="mi"></ion-icon>
+          <ion-label>Все заявки</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon name="briefcase" slot="start" class="mi"></ion-icon>
+          <ion-label>Завершенные</ion-label>
+        </ion-item>
+       </ion-list>   
+  </ion-content>
+</ion-menu>
 
-<ion-content>
-  <div *ngIf="this.currentRequests.length>0">
-    <div *ngFor="let item of this.currentRequests">
-      {{item.id}}
+<ion-content [fullscreen]="true" id="main-content">
+  <div class="marker" (click)="openMenu()">
+    <div class="marker-box">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
     </div>
+  </div>
+  <div *ngIf="this.currentRequests.length>0" style="padding-left: 2.5%;
+    padding-right: 2.5%;width:100%;">
+    <table class="table">
+      <tr class="headers">
+        <th>№</th>
+        <th>Кабинет</th>
+        <th>Сервис</th>
+        <th class="center">Заявитель</th>
+        <th class="center">Статус</th>
+        <th></th>
+        <th>Заявление</th>
+        <th class="end">Время создания</th>
+        <th></th>
+        <th class="end">Последнее Обновление</th>
+      </tr>
+      <tr class="data" *ngFor="let item of this.currentRequests">
+        <td>
+          {{item.id}}
+        </td>
+        <td>
+          {{item.zone.name}}
+        </td>
+        <td>
+          {{item.spec.name.String}}
+        </td>
+        <td class="center">
+          <div class="user">
+            <span *ngIf="item.user.name!=''">
+              {{item.user.surname}}&nbsp;{{item.user.name}}
+            </span>
+            {{item.user.phone}}
+          </div>
+        </td>
+        <td class="center">
+          <ion-badge *ngIf="item.badge == 1" class="Wanted">Требуется специалист</ion-badge>
+          <ion-badge *ngIf="item.badge == 2" class="Sent">Отправлено специалисту</ion-badge>
+          <ion-badge *ngIf="item.badge == 3" class="inProcess">В процессе</ion-badge>
+          <ion-badge *ngIf="item.badge == 4" class="Done">Специлист выполнил</ion-badge>
+          <ion-badge *ngIf="item.badge == 5" class="Wait">Ждем подтверждения</ion-badge>
+          <ion-badge *ngIf="item.badge == 6" class="Completed">Выполнено</ion-badge>
+          <ion-badge *ngIf="item.badge == 7" class="Delayed">Отсрочено</ion-badge>
+          <ion-badge *ngIf="item.badge == 8" class="Choose">Выбрать специалиста</ion-badge>
+        </td>
+        <td class="center">
+          <ion-button *ngIf="item.badge == 1">Направить специалиста</ion-button>
+          <ion-button *ngIf="item.badge == 4">Подтвердить выполнение</ion-button>
+        </td>
+        <td>
+          {{item.text}}
+        </td>
+        <td class="end">
+          {{item.createdTime}}
+        </td>
+        <td></td>
+        <td class="end">
+          {{item.lastUpdatedTime}}
+        </td>
+      </tr>
+    </table>
   </div>
   <div *ngIf="this.currentRequests.length==0">
     <ion-spinner name="crescent"></ion-spinner>

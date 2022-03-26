@@ -1,20 +1,94 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-menu side="start" content-id="main-content" max-edge-start="50">
+  <ion-content class="menuContent">
+    
+      <ion-list lines="full" class="list">
+        <ion-item>
+          <ion-icon name="home" slot="start" class="mi"></ion-icon>
+          <ion-label>Главная</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="albums" slot="start" class="mi"></ion-icon>
+          <ion-label>Все заявки</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon name="briefcase" slot="start" class="mi"></ion-icon>
+          <ion-label>Завершенные</ion-label>
+        </ion-item>
+       </ion-list>   
+  </ion-content>
+</ion-menu>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+<ion-content [fullscreen]="true" id="main-content">
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div class="content">
+      <div class="marker" (click)="openMenu()">
+        <div class="marker-box">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </div>
+      </div>
+      <div class="panel-holder container-fluid p-0">
+        <div class="panel">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col">
+                Таблица заявок
+              </div>
+              <div class="col-sm-9 col-xs-12 text-right">
+                <div class="btn_group">
+                  <input type="text" class="form-control" placeholder="Search">
+                  <button class="btn btn-default" title="Reload"><i class="fa fa-refresh"></i></button>
+                  <button class="btn btn-default" title="Add"><i class="fa fa-plus"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-body table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Номер заявки</th>
+                  <th>Кабинет</th>
+                  <th>Сервис</th>
+                  <th>Заявитель</th>
+                  <th>Статус</th>
+                  <th></th>
+                  <th>Заявление</th>
+                  <th>Время создания</th>
+                  <th>Последнее Обновление</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>id</td>
+                  <td>zone?.name</td>
+                  <td>spec?.name</td>
+                  <td><span>user.surname user.name</span> user?.phone</td>
+                  <td>
+                    <span class="badge bg-warning rounded-pill">ВЫБРАТЬ СПЕЦИАЛИСТА</span>
+                  </td>
+                  <td>
+                    <button>
+                      НАПРАВИТЬ СПЕЦИАЛИСТА
+                    </button>
+                    <button>
+                      ПОДТВЕРДИТЬ
+                    </button>
+                  </td>
+                  <td>text</td>
+                  <td>createdTime</td>
+                  <td>lastUpdatedTime</td>
+                  <td>
+                    <button class="btn p-0"><i class="fa fa-info-circle text-white fs-1"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>

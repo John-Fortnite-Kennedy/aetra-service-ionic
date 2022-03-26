@@ -1,0 +1,111 @@
+.table{
+    width: 100%;
+    
+
+    .headers{
+        border-bottom: 0.1rem solid #F5F5F5;
+        height: 5rem;
+        
+
+        th{
+            text-align: start;
+            min-width: 2rem;
+        }
+    }
+
+    .data{
+        height: 3rem;
+        color: #828A96;
+
+        td{
+            min-width: 2rem;
+            
+            .Wanted{
+                background-color: #DC3545;
+                color: #FFFFFF;
+            }
+            .Sent{
+                background-color: #F2F4F8;
+                color: #466A98;
+            }
+            .inProcess{
+                background-color: #F2F4F8;
+                color: #466A98;
+            }
+            .Done{
+                background-color: #46AA2B;
+                color: #FFFFFF;
+            }
+            .Wait{
+                background-color: #F2F4F8;
+                color: #466A98;
+            }
+            .Completed{
+                background-color: #F2F4F8;
+                color: #466A98;
+            }
+            .Delayed{
+                background-color: #DC3545;
+                color: #FFFFFF;
+            }
+            .Choose{
+                background-color: #F2F4F8;
+                color: #466A98;
+            }
+
+            .user{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+}
+
+.center {
+    text-align: center !important;
+
+    ion-button{
+        text-transform: none;
+    }
+}
+
+.end{
+    text-align: end !important;
+}
+
+.menuContent{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .marker{
+    height: 100%;
+    width: 2rem;
+    background: transparent;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+  
+    .marker-box{
+      width: 100%;
+      height: 25%;
+      background-color: #056DFE;
+      border-top-right-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  
+      ion-icon{
+        font-size: 2rem;
+      }
+    }
+  }
+  
+  ion-menu{
+    --width:20%;
+    --background:white;
+    
+  }
