@@ -140,12 +140,11 @@ export class ChartPage implements OnInit {
         datasets: [{
           label: 'Количество Заявок по службам за все время',
           data: barChartsData,
-          fill: false,
+          fill: true,
           borderColor: 'rgb(200, 200, 200)',
           tension: 0.1
         }]
       };
-
 
       var config: any = {
         type: 'bar',
