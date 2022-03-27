@@ -14,6 +14,7 @@ export class AdminboardPage implements OnInit {
   currentRequests = [];
 
   admin_access_data
+  admin_personal_data
 
 
   constructor(private menu: MenuController, public router: Router, public api: ApiService) { 
@@ -34,6 +35,16 @@ export class AdminboardPage implements OnInit {
 
     this.api.myjwt = this.admin_access_data.jwt
     this.api.router = this.router
+
+    // Get admins personal data
+    var response = this.api.sendGetRequestWithAuth("/admin/managerdata")
+    response.subscribe(data => {
+      this.admin_personal_data = data['payload']
+      console.log(this.admin_personal_data);
+
+    }, error => {
+      this.api.apiErrorHandlingManager(error)
+    })
 
     this.connectToWebsocket()
   }

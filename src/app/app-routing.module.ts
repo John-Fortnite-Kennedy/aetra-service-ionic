@@ -30,7 +30,23 @@ const routes: Routes = [
   {
     path: 'masterboard',
     loadChildren: () => import('./masterboard/masterboard.module').then( m => m.MasterboardPageModule)
+  },  {
+    path: 'userboard',
+    loadChildren: () => import('./userboard/userboard.module').then( m => m.UserboardPageModule)
   },
+  {
+    path: 'allrequests',
+    loadChildren: () => import('./allrequests/allrequests.module').then( m => m.AllrequestsPageModule)
+  },
+  {
+    path: 'finishedrequests',
+    loadChildren: () => import('./finishedrequests/finishedrequests.module').then( m => m.FinishedrequestsPageModule)
+  },
+  {
+    path: 'report',
+    loadChildren: () => import('./report/report.module').then( m => m.ReportPageModule)
+  },
+
 
 
 ];

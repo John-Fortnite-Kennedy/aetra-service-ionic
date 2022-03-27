@@ -2,17 +2,25 @@
   <ion-content class="menuContent">
     
       <ion-list lines="full" class="list">
-        <ion-item>
+        <ion-item routerLink="/adminboard">
           <ion-icon name="home" slot="start" class="mi"></ion-icon>
           <ion-label>Главная</ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item routerLink="/adminboard/allrequests">
           <ion-icon name="albums" slot="start" class="mi"></ion-icon>
-          <ion-label>Все заявки</ion-label>
+          <ion-label>Активные заявки</ion-label>
         </ion-item>
-        <ion-item lines="none">
+        <ion-item lines="none" routerLink="/adminboard/finishedrequests">
           <ion-icon name="briefcase" slot="start" class="mi"></ion-icon>
           <ion-label>Завершенные</ion-label>
+        </ion-item>
+        <ion-item lines="none" routerLink="/adminboard/charts">
+          <ion-icon name="stats-chart" slot="start" class="mi"></ion-icon>
+          <ion-label>Статистика</ion-label>
+        </ion-item>
+        <ion-item lines="none" routerLink="/adminboard/report">
+          <ion-icon name="document" slot="start" class="mi"></ion-icon>
+          <ion-label>Отчеты</ion-label>
         </ion-item>
        </ion-list>   
   </ion-content>
@@ -24,7 +32,7 @@
       <ion-icon name="chevron-forward-outline"></ion-icon>
     </div>
   </div>
-  <div *ngIf="this.currentRequests.length>0" style="padding-left: 2.5%;padding-right: 2.5%;width:100%;display: flex;flex-direction: column;">
+  <div *ngIf="this.currentRequests.length>0" style="padding-left: 2.5%; padding-right: 2.5%; width:100%; display: flex; flex-direction: column;">
     <div class="searchBox">
       <ion-searchbar></ion-searchbar>
       <button><ion-icon name="filter-outline"></ion-icon>&nbsp; Фильтр</button>
