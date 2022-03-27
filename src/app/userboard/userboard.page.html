@@ -1,26 +1,26 @@
 <ion-content [fullscreen]="true">
   <div class="content">
-    <div class="registration">
+    <div class="registration" *ngIf="userdata?.name==''">
       <ion-text>
         <h3>Завершить регистрацию:</h3>
       </ion-text>
       <ion-item>
         <ion-label position="stacked">Имя</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="username"></ion-input>
       </ion-item>
       <br>
       <ion-item>
         <ion-label position="stacked">Фамилия</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="usersurname"></ion-input>
       </ion-item>
       <br>
-      <ion-button>Сохранить</ion-button>
+      <ion-button (click)="save()" [disabled]="username=='' || usersurname == ''">Сохранить</ion-button>
     </div>
     <div class="requests">
       <ion-accordion-group [multiple]="true">
-        <ion-accordion value="colors">
+        <ion-accordion *ngFor="let item of myrequests">
           <ion-item slot="header">
-            <ion-label class="name">Заявка</ion-label>
+            <ion-label class="name">Заявка {{item.id}}</ion-label>
             <ion-badge>ожидайте</ion-badge>
           </ion-item>
       
@@ -31,7 +31,7 @@
                   <ion-text>
                     Состояние заявки:
                   </ion-text>
-                  Ваша заявка отправлена
+                  {{item.response_text}}
                 </div>
               </ion-label>
             </ion-item>
@@ -41,45 +41,15 @@
                   <ion-text>
                     Текст заявки:
                   </ion-text>
-                  брух
+                  {{item.text}}
                 </div>
               </ion-label>
             </ion-item>
           </ion-list>
-        </ion-accordion>
-        <ion-accordion value="shapes">
-          <ion-item slot="header">
-            <ion-label>Shapes</ion-label>
-          </ion-item>
-      
-          <ion-list slot="content">
-            <ion-item>
-              <ion-label>Circle</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>Triangle</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>Square</ion-label>
-            </ion-item>
-          </ion-list>
-        </ion-accordion>
-        <ion-accordion value="numbers">
-          <ion-item slot="header">
-            <ion-label>Numbers</ion-label>
-          </ion-item>
-      
-          <ion-list slot="content">
-            <ion-item>
-              <ion-label>1</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>2</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>3</ion-label>
-            </ion-item>
-          </ion-list>
+          <div *ngIf="item.badge == 3">
+            <ion-button (click)="accept(item.id)">Принять выполнение заявки</ion-button>
+          </div>
+          
         </ion-accordion>
       </ion-accordion-group>
     </div>

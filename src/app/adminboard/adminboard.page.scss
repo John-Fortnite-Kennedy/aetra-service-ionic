@@ -116,15 +116,15 @@
     .data:hover {
         background-color: #F7F7F7;
         color: black;
-        
+
         
         box-shadow:  -20px 20px 60px #bebebe,
              20px -20px 60px #ffffff;
         transform: translate3d(6px, -6px, 0);
         
         transition-delay: 0s;
-        transition-duration: 0.4s;
-         transition-property: all;
+        transition-duration: 0.8s;
+        transition-property: all;
         transition-timing-function: line;
       }
       
