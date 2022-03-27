@@ -71,9 +71,13 @@ export class MasterboardPage implements OnInit {
     });
   }
 
+  refresh(){
+    window.location.reload();
+  }
+
   leave() {
-    sessionStorage.removeItem('manager_access_data')
-    this.router.navigateByUrl('/gate')
+    sessionStorage.removeItem('manager_access_data');
+    this.router.navigateByUrl('/login');
   }
 
   ngOnInit() {

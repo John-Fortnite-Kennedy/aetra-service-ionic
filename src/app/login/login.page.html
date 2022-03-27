@@ -4,7 +4,7 @@
     <div class="loginForm">
       <ion-input [(ngModel)]="login" type="email" placeholder="Почта"></ion-input>
       <ion-input [(ngModel)]="password" type="password" placeholder="Пароль"></ion-input>
-      <ion-button type="subimt" expand="block" (click)="tryAuth(login, password)">Войти</ion-button>
+      <ion-button type="subimt" expand="block" [disabled]="login=='' || password==''" (click)="tryAuth(login, password)">Войти</ion-button>
     </div>
     <div class="loginFooter">
       <a href="">Забыли Пароль?</a>

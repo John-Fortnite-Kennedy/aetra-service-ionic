@@ -1,10 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>masterboard</ion-title>
+    
+    <ion-button slot="start" (click)="leave()"><ion-icon name="exit-outline"></ion-icon></ion-button>
+    <ion-button slot="end" (click)="refresh()"><ion-icon name="refresh-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <div class="content" *ngIf="allrequests.length>0">
     <ion-card *ngFor="let item of allrequests">
       <ion-card-header>
@@ -12,11 +14,27 @@
       </ion-card-header>
     
       <ion-card-content>
-        Keep close to Nature's heart... and break clear away, once in awhile,
-        and climb a mountain or spend a week in the woods. Wash your spirit clean.
-        <ion-button *ngIf="" (click)="acceptRequest(item.id)">acceptRequest</ion-button>
+        <ion-text>
+          <h4>Номер заявителя:</h4>
+          <h3 *ngIf="item.user.name != ''">{{item.user.name}}&nbsp;{{item.user.surname}}</h3>
+          {{item.user.phone}}
+          <h4>Зона:</h4>
+          {{item.zone.name}}
+          <h4>Файлы:</h4>
+          {{item.text}}
+          <h4>Текст:</h4>
+          {{item.text}}
+        </ion-text>
+        <div class="buttonsHolder" style="width: 100%;display: flex;justify-content: center;padding-top: 1rem;">
+          <ion-button *ngIf="!item.acceptedBySpec && item.acceptedByManager" (click)="acceptRequest(item.id)" color="danger">Принять вызов</ion-button>
+          <ion-button *ngIf="item.acceptedBySpec && item.acceptedByManager && !item.finishedBySpec" (click)="confirmRequest(item.id)" color="danger">Подтвердить выполнение</ion-button>
+          <ion-button *ngIf="item.acceptedBySpec && item.acceptedByManager && item.finishedBySpec && !item.finishedByManager" disabled="true">Ожидаем подтверждение диспетчера</ion-button>
+          <ion-button *ngIf="item.acceptedByManager && item.acceptedBySpec && item.finishedBySpec && item.finishedByManager && !item.acceptedByUser" disabled="true">Выполнено</ion-button>
+          <ion-button *ngIf="item.acceptedByManager && item.acceptedBySpec && item.finishedBySpec && item.finishedByManager && item.acceptedByUser" disabled="true">Принято заявителем</ion-button>
+        </div>
+        
 
-        <ion-button (click)="confirmRequest(item.id)">confirmRequest</ion-button>
+        
       </ion-card-content>
     </ion-card>
   </div>
@@ -26,6 +44,6 @@
     <ion-spinner name="crescent"></ion-spinner>
   </div>
 
-  <ion-button (click)="leave()">leave</ion-button>
+  
 
 </ion-content>
