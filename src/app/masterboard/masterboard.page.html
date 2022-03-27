@@ -5,5 +5,21 @@
 </ion-header>
 
 <ion-content>
+  <div *ngIf="allrequests.length>0">
+    <div *ngFor="let item of allrequests">
+      {{item.id}}
+
+      <ion-button (click)="acceptRequest(item.id)">acceptRequest</ion-button>
+
+      <ion-button (click)="confirmRequest(item.id)">confirmRequest</ion-button>
+
+    </div>
+  </div>
+
+  <div *ngIf="allrequests.length==0">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <ion-button (click)="leave()">leave</ion-button>
 
 </ion-content>
