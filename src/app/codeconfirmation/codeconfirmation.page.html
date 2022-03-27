@@ -1,9 +1,19 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>codeconfirmation</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-content [fullscreen]="true">
+  <div class="content">
+    <div class="inputHolder">
+      <code-input [isCodeHidden]="true"
+                [codeLength]="4"
+                (codeChanged)="onCodeChanged($event)"
+                (codeCompleted)="onCodeCompleted($event)"
+                #codeInput>
+    </code-input>
+    </div>
+    <div class="text">
+        Вам должен придти звонок, введите последние 4 цифры номера.<br>
+        В случае задержки звонка более 1 минуты, повторите запрос звонка
+        
+          <ion-button [disabled]='!timerCheck' (click)="reCall()">Позвонить</ion-button>
+        
+    </div>
+  </div>
 </ion-content>

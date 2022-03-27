@@ -1,9 +1,89 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>userboard</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-content [fullscreen]="true">
+  <div class="content">
+    <div class="registration">
+      <ion-text>
+        <h3>Завершить регистрацию:</h3>
+      </ion-text>
+      <ion-item>
+        <ion-label position="stacked">Имя</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="stacked">Фамилия</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <br>
+      <ion-button>Сохранить</ion-button>
+    </div>
+    <div class="requests">
+      <ion-accordion-group [multiple]="true">
+        <ion-accordion value="colors">
+          <ion-item slot="header">
+            <ion-label class="name">Заявка</ion-label>
+            <ion-badge>ожидайте</ion-badge>
+          </ion-item>
+      
+          <ion-list slot="content">
+            <ion-item>
+              <ion-label>
+                <div class="text">
+                  <ion-text>
+                    Состояние заявки:
+                  </ion-text>
+                  Ваша заявка отправлена
+                </div>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <div class="text">
+                  <ion-text>
+                    Текст заявки:
+                  </ion-text>
+                  брух
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-accordion>
+        <ion-accordion value="shapes">
+          <ion-item slot="header">
+            <ion-label>Shapes</ion-label>
+          </ion-item>
+      
+          <ion-list slot="content">
+            <ion-item>
+              <ion-label>Circle</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Triangle</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Square</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-accordion>
+        <ion-accordion value="numbers">
+          <ion-item slot="header">
+            <ion-label>Numbers</ion-label>
+          </ion-item>
+      
+          <ion-list slot="content">
+            <ion-item>
+              <ion-label>1</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>2</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>3</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-accordion>
+      </ion-accordion-group>
+    </div>
+  </div>
+  
+  
 </ion-content>

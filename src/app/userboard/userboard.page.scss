@@ -1,0 +1,103 @@
+.content{
+    height: 100%;
+    background-color: #9EC2FF;
+
+    .registration{
+        background: rgba(255,255,255,1);
+        background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+        background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+        height: auto;
+        padding: 5%;
+        display: flex;
+        flex-direction: column;
+        border-bottom-right-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+
+        ion-text{
+            h3{
+                -webkit-user-select: auto;
+                -moz-user-select: auto;
+                -ms-user-select: auto;
+                user-select: auto;
+            }
+        }
+        
+
+        ion-item{
+            --border-width: 1px;
+            --border-style: solid;
+            --border-color: lightgrey;
+            --border-radius: 0.5rem;
+        }
+
+        ion-button{
+            text-transform: none;
+        }
+    }
+
+    .requests{
+        padding-top: 1rem !important;
+        padding: 5%;
+        
+        ion-accordion{
+
+            ion-item{
+                --ripple-color: #3880FF;
+                --background: white;
+
+                ion-badge{
+                    padding: 0.5rem;
+                }
+            }
+
+            .name{
+                font-weight: 600;
+            }
+            
+            ion-list{
+                background-color: #EDEDED;
+
+                ion-item{
+                    --background: transparent;
+                    
+                }
+
+                ion-item:last-child{
+                    --border-color: transparent;
+                }
+
+                ion-item{
+                    .text{
+                        display: flex;
+                        flex-direction: column;
+
+                        ion-text{
+                            font-size: 1rem;
+                            font-weight: 600;
+                            padding-bottom: 0.2rem;
+                        }
+                    }
+                }
+            }
+        }
+        
+
+        ion-accordion:first-child{
+            border-top-right-radius: 1rem;
+            border-top-left-radius: 1rem;
+        }
+
+        ion-accordion:last-child{
+            border-bottom-right-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+        }
+        
+    }
+
+    
+}

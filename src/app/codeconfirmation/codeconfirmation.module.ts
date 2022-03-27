@@ -8,12 +8,15 @@ import { CodeconfirmationPageRoutingModule } from './codeconfirmation-routing.mo
 
 import { CodeconfirmationPage } from './codeconfirmation.page';
 
+import { CodeInputModule } from 'angular-code-input';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CodeconfirmationPageRoutingModule
+    CodeconfirmationPageRoutingModule,
+    CodeInputModule
   ],
   declarations: [CodeconfirmationPage]
 })
