@@ -11,10 +11,12 @@ import { Chart, registerables } from 'chart.js'
 export class ChartPage implements OnInit {
 
   @ViewChild('lineCanvas') private lineCanvas: ElementRef;
+  @ViewChild('barCanvas') private barCanvas: ElementRef;
 
   admin_access_data
 
   linechart
+  barchart
 
   constructor(public router: Router, public api: ApiService) { 
 
@@ -37,6 +39,7 @@ export class ChartPage implements OnInit {
 
     //retrieving data for activity chart
     this.getLineChartData()
+    this.getBarChartData()
 
   }
 
@@ -78,7 +81,7 @@ export class ChartPage implements OnInit {
       var charconf = {
         labels: labels,
         datasets: [{
-          label: 'Количество Заявок',
+          label: 'Количество Заявок за последние 30 дней',
           data: chartdata,
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
@@ -94,6 +97,63 @@ export class ChartPage implements OnInit {
 
       Chart.register(...registerables);
       this.linechart = new Chart(this.lineCanvas.nativeElement, config);
+      
+
+    }, error => {
+      this.api.apiErrorHandlingManager(error)
+    })
+  }
+
+  getBarChartData(){
+    var mymap = new Map();
+
+    var response = this.api.sendGetRequestWithAuth("/admin/requests/all/extended")
+    response.subscribe(async data => {
+
+      var request = data['payload']
+      console.log(request)
+      for(var i = 0; i<request.length; i++){
+        if(request[i].spec.name.Valid){
+
+          if(mymap.has(request[i].spec.name.String)){
+            mymap.set(request[i].spec.name.String, mymap.get(request[i].spec.name.String)+1);
+          }else{
+            mymap.set(request[i].spec.name.String, 1);
+          }
+
+        }
+
+      }
+
+      console.log(mymap)
+
+      var labels = []
+      var barChartsData = []
+
+      for (let [key, value] of mymap) {
+        labels.push(key)
+        barChartsData.push(value)
+      }
+
+      var charconf = {
+        labels: labels,
+        datasets: [{
+          label: 'Количество Заявок по службам за все время',
+          data: barChartsData,
+          fill: false,
+          borderColor: 'rgb(200, 200, 200)',
+          tension: 0.1
+        }]
+      };
+
+
+      var config: any = {
+        type: 'bar',
+        data: charconf
+      };
+
+      Chart.register(...registerables);
+      this.barchart = new Chart(this.barCanvas.nativeElement, config);
       
 
     }, error => {
