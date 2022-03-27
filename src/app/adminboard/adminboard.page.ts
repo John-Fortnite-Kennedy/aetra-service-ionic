@@ -13,8 +13,9 @@ export class AdminboardPage implements OnInit {
 
   currentRequests = [];
 
-  admin_access_data
-  admin_personal_data
+  admin_access_data;
+  admin_personal_data;
+  loaded = false;
 
 
   constructor(private menu: MenuController, public router: Router, public api: ApiService) { 
@@ -125,6 +126,7 @@ export class AdminboardPage implements OnInit {
   }
 
   ngOnInit() {
+    setTimeout(()=>{this.loaded=true},500);
   }
 
 }

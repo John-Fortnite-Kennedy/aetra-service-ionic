@@ -5,16 +5,22 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="allrequests.length>0">
-    <div *ngFor="let item of allrequests">
-      {{item.id}}
+  <div class="content" *ngIf="allrequests.length>0">
+    <ion-card *ngFor="let item of allrequests">
+      <ion-card-header>
+        <ion-card-title>{{item.id}}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        Keep close to Nature's heart... and break clear away, once in awhile,
+        and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        <ion-button *ngIf="" (click)="acceptRequest(item.id)">acceptRequest</ion-button>
 
-      <ion-button (click)="acceptRequest(item.id)">acceptRequest</ion-button>
-
-      <ion-button (click)="confirmRequest(item.id)">confirmRequest</ion-button>
-
-    </div>
+        <ion-button (click)="confirmRequest(item.id)">confirmRequest</ion-button>
+      </ion-card-content>
+    </ion-card>
   </div>
+
 
   <div *ngIf="allrequests.length==0">
     <ion-spinner name="crescent"></ion-spinner>

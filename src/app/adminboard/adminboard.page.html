@@ -1,6 +1,5 @@
-<ion-menu side="start" content-id="main-content" max-edge-start="50">
+<ion-menu side="start" content-id="main-content" max-edge-start="50" [disabled]="!loaded">
   <ion-content class="menuContent">
-    
       <ion-list lines="full" class="list">
         <ion-item routerLink="/adminboard">
           <ion-icon name="home" slot="start" class="mi"></ion-icon>
