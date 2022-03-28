@@ -18,6 +18,24 @@ export class CreateRequestPage implements OnInit {
   zone_id: number;
   error_message: string;
 
+  validation_messages = {
+    // 'user_name': [
+    //   { type: 'pattern', message: 'Введите имя в правильном формате.' }
+    // ],
+    // 'user_surname': [
+    //   { type: 'pattern', message: 'Введите фамилию в правильном формате.' }
+    // ],
+    'request_text': [
+      { type: 'required', message: 'Необходимо ввести текст заявки.' },
+      // { type: 'pattern', message: 'Enter a valid request text.' }
+    ],
+    'user_phone': [
+      { type: 'required', message: 'Необходимо ввести номер телефона.' },
+      { type: 'pattern', message: 'Введите правильный номер телефона.' },
+      { type: 'maxlength', message: 'Номер телефона не может быть больше 11 чисел.' },
+    ],
+  }
+
   constructor(public api: ApiService,public router: Router, private activatedRoute: ActivatedRoute, public http: HttpClient, public formBuilder: FormBuilder) { 
     // Initially we get the zone id from get param of the link.
     this.activatedRoute.params.subscribe( params =>
@@ -35,14 +53,6 @@ export class CreateRequestPage implements OnInit {
     this.requestForm = this.formBuilder.group({
       spec_id: new FormControl('',
       ),
-      // user_name: new FormControl('', Validators.compose([
-      //   Validators.pattern('^[ЁёА-я a-zA-Z]+$'),
-      // ]),
-      // ),
-      // user_surname: new FormControl('', Validators.compose([
-      //   Validators.pattern('^[ЁёА-я a-zA-Z]+$'),
-      // ]),
-      // ),
       request_text: new FormControl('', Validators.compose([
         Validators.required,
         // Validators.pattern('^[ЁёА-я a-zA-Z]+$'),
@@ -60,6 +70,9 @@ export class CreateRequestPage implements OnInit {
   }
 
   ngOnInit() {
+    this.requestForm.patchValue({
+      user_phone:this.defaultValue
+    })
   }
 
   onFileUpload(event){
@@ -74,6 +87,24 @@ export class CreateRequestPage implements OnInit {
       (r)=>{console.log('got r', r)}
     )*/
   }
+
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+
+  defaultValue: string = '+7';
+
+  preSet() : void{
+    if (!this.requestForm.controls['user_phone'].value || this.defaultValue !== this.requestForm.controls['user_phone'].value.substring(0, 2)) {
+        this.requestForm.patchValue({
+          user_phone:this.defaultValue
+        })
+    }
+}
 
   requestCreate() {
     console.log(this.file)
