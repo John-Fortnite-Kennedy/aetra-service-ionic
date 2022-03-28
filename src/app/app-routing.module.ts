@@ -30,7 +30,8 @@ const routes: Routes = [
   {
     path: 'masterboard',
     loadChildren: () => import('./masterboard/masterboard.module').then( m => m.MasterboardPageModule)
-  },  {
+  },
+  {
     path: 'userboard',
     loadChildren: () => import('./userboard/userboard.module').then( m => m.UserboardPageModule)
   },
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path: 'codeconfirmation',
     loadChildren: () => import('./codeconfirmation/codeconfirmation.module').then( m => m.CodeconfirmationPageModule)
+  },
+  {
+    path: 'create-request/:id',
+    loadChildren: () => import('./create-request/create-request.module').then( m => m.CreateRequestPageModule)
   },
 
 

@@ -1,0 +1,25 @@
+<ion-content fullscreen="true">
+  <div class="content">
+    <form class="requestForm" [formGroup]='requestForm'>
+      <ion-select formControlName='spec_id' placeholder="Выберите специалиста" interface="popover">
+        <ion-select-option value = '0'></ion-select-option>
+        <ion-select-option *ngFor="let spec of allSpecs;" value = '{{spec.id}}' >{{spec.name}}</ion-select-option>
+      </ion-select>
+      <ion-textarea formControlName="request_text" rows="3" placeholder="Текст заявки"></ion-textarea>
+      <ion-input type="tel" formControlName="user_phone" name="user_phone" placeholder="Номер телефона"></ion-input>
+      <small><i>Номер телефона будет использован для обратной связи</i></small>
+      <div id="upload">
+        <ion-button [disabled]='file!=null' expand="block">
+          <ion-icon name="cloud-upload-outline"></ion-icon>
+          <p>Загрузить файл</p>
+          <input type="file" id="file-upload" (change)="onFileUpload($event)">
+        </ion-button>
+      </div>
+      <div id="send">
+        <ion-button (click)="requestCreate()" expand="block">
+          <p>Отправить</p>
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>
