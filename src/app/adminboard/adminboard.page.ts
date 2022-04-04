@@ -1,8 +1,11 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { webSocket } from 'rxjs/webSocket';
 import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { ModalController } from '@ionic/angular';
+import { DetailsPage } from '../details/details.page';
+
 
 @Component({
   selector: 'app-adminboard',
@@ -18,7 +21,7 @@ export class AdminboardPage implements OnInit {
   loaded = false;
 
 
-  constructor(private menu: MenuController, public router: Router, public api: ApiService) { 
+  constructor(private menu: MenuController, public router: Router, public api: ApiService,  public modalCtrl: ModalController) { 
 
     // Configure router
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -123,6 +126,18 @@ export class AdminboardPage implements OnInit {
     for (var i = 0; i < fabs.length; i++) {
       fabs[i].activated = false;
     }
+  }
+
+  async call(val){
+    const modal = await this.modalCtrl.create({
+      component: DetailsPage,
+      componentProps: {
+        'requestId': val
+      },
+      cssClass: 'transparent-modal',
+      animated: true,
+    });
+    modal.present();
   }
 
   ngOnInit() {

@@ -1,0 +1,54 @@
+<ion-header  class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      Данные о заявке
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content overflow-scroll="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="attr">Зона:</ion-col>
+      <ion-col>
+        <span *ngIf="requestInfo!=null">{{requestInfo.zone.name}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="attr">Номер телефона:</ion-col>
+      <ion-col>
+        <span *ngIf="requestInfo!=null">{{requestInfo.user.phone}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h4 class="attr">Текст заявки:</h4>
+        <ion-textarea *ngIf="requestInfo!=null" class="ion-no-padding" rows="4" cols="10" readonly="true" value="{{requestInfo.text}}"></ion-textarea>      
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list class="ion-no-padding">     
+          <ion-item class="ion-no-padding" lines="none">
+            <ion-label class="attr">Выбранный специалист:</ion-label>
+            
+              <ion-select  *ngIf="requestInfo!=null" placeholder="{{requestInfo.spec.name.String}}" (ionChange)="changeSpec()">
+                <ng-container *ngFor="let spec of allSpecs">
+                  <ion-select-option value="spec.name">{{spec.name}}</ion-select-option>
+                </ng-container>
+              </ion-select>
+            
+          </ion-item>   
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item class="ion-no-padding">
+          <ion-label position="stacked" class="attr" style="font-size: 1.5em;">Комментарий менеджера:</ion-label>
+          <ion-textarea *ngIf="requestInfo!=null" rows="9" cols="20" value="{{requestInfo.managerComment}}"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

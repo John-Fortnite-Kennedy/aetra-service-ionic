@@ -54,7 +54,11 @@ const routes: Routes = [
   {
     path: 'create-request/:id',
     loadChildren: () => import('./create-request/create-request.module').then( m => m.CreateRequestPageModule)
+  },  {
+    path: 'details',
+    loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
   },
+
 
 
 

@@ -49,7 +49,7 @@
         
         <th class="end">Последнее Обновление</th>
       </tr>
-      <tr class="data" *ngFor="let item of this.currentRequests">
+      <tr class="data" *ngFor="let item of this.currentRequests" (click)="call(item.id)">
         <td>
           {{item.id}}
         </td>

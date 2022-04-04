@@ -1,0 +1,23 @@
+ion-header{
+    ion-title{
+        font-weight: 600;
+        color: lightskyblue;
+    }
+}
+ion-content{
+    ion-grid{
+        --ion-grid-padding: 2rem;
+
+        .attr{
+            font-weight: 600;
+        }
+
+        textarea{
+            padding: 0;
+        }
+
+        .comment{
+            
+        }
+    }
+}
