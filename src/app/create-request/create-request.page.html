@@ -1,28 +1,28 @@
 <ion-content fullscreen="true">
   <div class="content">
     <form class="requestForm" [formGroup]='requestForm'>
-      <ion-select formControlName='spec_id' placeholder="Выберите специалиста" interface="popover">
+      <ion-select [interfaceOptions]="{ cssClass: 'popover-wide' }" formControlName='spec_id' placeholder="Выберите специалиста" interface="popover">
         <ion-select-option value = '0'></ion-select-option>
         <ion-select-option *ngFor="let spec of allSpecs;" value = '{{spec.id}}' >{{spec.name}}</ion-select-option>
       </ion-select>
-      <ion-textarea formControlName="request_text" rows="3" placeholder="Текст заявки"></ion-textarea>
+      <ion-textarea class="ion-no-padding" formControlName="request_text" rows="3" placeholder="Текст заявки"></ion-textarea>
       <div class='error-message' *ngFor='let validation of validation_messages.request_text'>
         <span *ngIf="requestForm.get('request_text')!.hasError(validation.type) && (requestForm.get('request_text')!.dirty || requestForm.get('request_text')!.touched)">
           {{ validation.message }}
         </span>
       </div>
-      <ion-input type="tel" formControlName="user_phone" name="user_phone" placeholder="Номер телефона" (keypress)="numberOnly($event)" (change)="preSet()" maxlength="12"></ion-input>
+      <ion-input class="ion-no-padding" type="tel" formControlName="user_phone" name="user_phone" placeholder="Номер телефона" (keypress)="numberOnly($event)" (change)="preSet()" maxlength="12"></ion-input>
       <small><i>Номер телефона будет использован для обратной связи</i></small>
       <div class='error-message' *ngFor='let validation of validation_messages.request_text'>
         <span *ngIf="requestForm.get('user_phone')!.hasError(validation.type) && (requestForm.get('user_phone')!.dirty || requestForm.get('user_phone')!.touched)">
           {{ validation.message }}
         </span>
       </div>
-      <div id="upload">
-        <ion-button [disabled]='file!=null' expand="block">
+      <div>
+        <ion-button [disabled]='file!=null' class="fileUpload">
           <ion-icon name="cloud-upload-outline"></ion-icon>
-          <p>Загрузить файл</p>
-          <input type="file" id="file-upload" (change)="onFileUpload($event)">
+          <span>&nbsp;Загрузить файл</span>
+          <input type="file" id="file-upload" (change)="onFileUpload($event)"/>
         </ion-button>
       </div>
       <div id="send">
