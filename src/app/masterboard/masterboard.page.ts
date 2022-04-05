@@ -71,7 +71,6 @@ export class MasterboardPage implements OnInit {
     }, error=> {
       this.api.apiErrorHandlingManager(error)
     });
-    this.refresh()
   }
 
   confirmRequest(request_id) {
