@@ -16,6 +16,8 @@ export class DetailsPage implements OnInit {
   requestInfo;
   loaded: boolean = false;
 
+  specId;
+
   constructor(public router: Router, public api: ApiService,  public modalCtrl: ModalController) {
     // Configure router
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -35,9 +37,6 @@ export class DetailsPage implements OnInit {
     this.api.router = this.router
   }
 
-  changeSpec(){
-    console.log("bruh");
-  }
 
   ngOnInit() {
     var response = this.api.sendGetRequest("/common/allSpecs")
@@ -57,6 +56,19 @@ export class DetailsPage implements OnInit {
       
     })
     this.loaded=true;
+  }
+
+  setSpec(requestId, specId) {
+    var data = {
+      "spec_id" : parseInt(specId),
+    }
+    console.log(data)
+    var response = this.api.sendPatchRequestWithAuth(data, "/admin/requests/setSpec/" + requestId)
+    response.subscribe(data=>{
+      this.modalCtrl.dismiss()
+    }, error => {
+      this.api.apiErrorHandlingManager(error)
+    })
   }
 
   loadFiles(item){

@@ -29,16 +29,22 @@
     <ion-row>
       <ion-col>
         <ion-list class="ion-no-padding">     
-          <ion-item class="ion-no-padding" lines="none">
-            <ion-label class="attr">Выбранный специалист:</ion-label>
-            
-              <ion-select  *ngIf="requestInfo!=null" placeholder="{{requestInfo.spec.name.String}}" (ionChange)="changeSpec()">
+          <ion-item *ngIf="!requestInfo?.acceptedByManager" class="ion-no-padding" lines="none">
+              <ion-label class="attr">Выбранный специалист:</ion-label>
+              <ion-select [(ngModel)]="specId" *ngIf="requestInfo!=null" placeholder="{{requestInfo.spec.name.String}}" (ionChange)="setSpec(requestInfo.id, specId)">
                 <ng-container *ngFor="let spec of allSpecs">
-                  <ion-select-option value="spec.name">{{spec.name}}</ion-select-option>
+                  <ion-select-option value="{{spec.id}}">{{spec.name}}</ion-select-option>
                 </ng-container>
               </ion-select>
             
           </ion-item>   
+          <ion-item *ngIf="requestInfo?.acceptedByManager" class="ion-no-padding" lines="none">
+
+              <ion-label class="attr">Выбранный специалист:</ion-label>
+              {{requestInfo.spec.name.String}}
+              
+          </ion-item>
+
         </ion-list>
       </ion-col>
     </ion-row>
@@ -50,5 +56,9 @@
         </ion-item>
       </ion-col>
     </ion-row>
+    <div *ngIf="requestInfo?.fileUrl!=undefined">
+      <h4>Прикрепенные фото:</h4>
+      <img src="{{requestInfo.fileUrl}}" alt="">
+    </div>
   </ion-grid>
 </ion-content>
