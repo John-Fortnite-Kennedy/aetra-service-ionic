@@ -50,10 +50,19 @@ export class DetailsPage implements OnInit {
     var response = this.api.sendGetRequestWithAuth("/admin/requests/get/extended/"+this.requestId)
     response.subscribe(data =>{
       this.requestInfo = data['payload']
+      this.loadFiles(this.requestInfo)
       console.log(this.requestInfo)
+
     }, error=>{
       
     })
     this.loaded=true;
+  }
+
+  loadFiles(item){
+    var response = this.api.sendGetRequest("/common/getAllFilesByRequestId/"+item.id)
+    response.subscribe(data => {
+      item.fileUrl = "http://185.22.64.115:4004/api/"+data['payload'][0].path
+    })
   }
 }
