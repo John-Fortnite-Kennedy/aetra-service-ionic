@@ -9,7 +9,8 @@ import { ApiService } from '../api.service';
 })
 export class AuthPage implements OnInit {
 
-  phone
+  phone;
+  allow = true;
 
   constructor(public router: Router, public api: ApiService) { }
 
@@ -33,6 +34,16 @@ export class AuthPage implements OnInit {
     }, error=> {
       
     });
+  }
+
+  check(){
+    var tmp = this.phone.toString();
+    //console.log(tmp);
+    if(tmp.length==10){
+      this.allow=false;
+    } else {
+      this.allow=true;
+    }
   }
 
 }

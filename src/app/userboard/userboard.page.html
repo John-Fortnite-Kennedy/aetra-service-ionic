@@ -21,7 +21,10 @@
         <ion-accordion *ngFor="let item of myrequests">
           <ion-item slot="header">
             <ion-label class="name">Заявка {{item.id}}</ion-label>
-            <ion-badge>ожидайте</ion-badge>
+            <ion-badge *ngIf="item?.badge == 1" class="Wanted">Отправлено</ion-badge>
+            <ion-badge *ngIf="item?.badge == 2" disabled="true" class="Sent">Ожидайте</ion-badge>
+            <ion-badge *ngIf="item?.badge == 3" disabled="true" class="inProcess">Подтвердите</ion-badge>         
+            <ion-badge *ngIf="item?.badge == 4" disabled="true" class="Done">Выполнено</ion-badge>           
           </ion-item>
       
           <ion-list slot="content">
@@ -45,8 +48,8 @@
                 </div>
               </ion-label>
             </ion-item>
-            <div style="width: 100%;display: flex;justify-content: center;text-transform: none;" *ngIf="item.badge == 3">
-              <ion-button (click)="accept(item.id)">Принять выполнение заявки</ion-button>
+            <div style="width: 100%;display: flex;justify-content: center;text-transform: none;" *ngIf="item.badge == 3 && !done">
+              <ion-button (click)="accept(item.id);do()">Принять выполнение заявки</ion-button>
             </div>
           </ion-list>
           

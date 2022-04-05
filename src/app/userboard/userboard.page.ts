@@ -10,10 +10,12 @@ import { ApiService } from '../api.service';
 export class UserboardPage implements OnInit {
 
   username;
-  usersurname
+  usersurname;
 
-  userdata
+  userdata;
   myrequests;
+
+  done = false;
 
   constructor(public router: Router, public api: ApiService) { 
     // Configure router
@@ -100,6 +102,10 @@ export class UserboardPage implements OnInit {
       item.response_text = 'Выполнено!';
       item.badge=4;
     }
+  }
+
+  do(){
+    this.done=true;
   }
 
   ngOnInit() {

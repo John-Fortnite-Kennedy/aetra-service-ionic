@@ -2,9 +2,9 @@
   <div class="content">
     <div class="phoneForm">
       <p>Вы можете авторизоваться для просмотра состояния ваших заявок</p>
-      <ion-input [(ngModel)]="phone" type="tel" placeholder="Введите номер телефона"></ion-input>
+      <ion-input [(ngModel)]="phone" type="tel" maxlength="10" minlength="10" required="true" (ionChange)="check()"></ion-input>
       <div class="buttonHolder">
-        <ion-button type="submit" expand="block" (click)="auth()">Отправить</ion-button>
+        <ion-button type="submit" expand="block" (click)="auth()" [disabled]="allow" >Отправить</ion-button>
       </div>
     </div>
   </div>
