@@ -54,7 +54,7 @@ export class AdminboardPage implements OnInit {
   }
 
   connectToWebsocket(){
-    var ws = webSocket('ws://localhost:4004/api/ws');
+    var ws = webSocket('ws://185.22.64.115:4004/api/ws');
 
     ws.subscribe(
       msg => {
