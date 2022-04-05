@@ -1,7 +1,7 @@
 <ion-content fullscreen="true">
   <div class="content">
     <form class="requestForm" [formGroup]='requestForm'>
-      <ion-select [interfaceOptions]="{ cssClass: 'popover-wide' }" formControlName='spec_id' placeholder="Выберите специалиста" interface="popover">
+      <ion-select formControlName='spec_id' placeholder="Выберите специалиста" interface="popover">
         <ion-select-option value = '0'></ion-select-option>
         <ion-select-option *ngFor="let spec of allSpecs;" value = '{{spec.id}}' >{{spec.name}}</ion-select-option>
       </ion-select>

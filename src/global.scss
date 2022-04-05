@@ -24,3 +24,13 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.my-modal-class{
+    &::part(content){
+        width: 80%;
+        height: 70%; 
+    }     
+}
+
+
+

@@ -148,7 +148,7 @@ export class AdminboardPage implements OnInit {
       componentProps: {
         'requestId': val
       },
-      cssClass: 'transparent-modal',
+      cssClass: 'my-modal-class',
       animated: true,
     });
     modal.present();
