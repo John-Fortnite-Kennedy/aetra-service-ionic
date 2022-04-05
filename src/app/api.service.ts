@@ -13,7 +13,7 @@ export class ApiService {
 
   }
 
-  const_url = "http://185.22.64.115:4004/api" //"https://saktan.kz/api"
+  const_url = "http://localhost:4004/api" //"https://saktan.kz/api"
 
   ngOnInit(){}
 

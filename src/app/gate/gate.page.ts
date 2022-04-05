@@ -11,6 +11,10 @@ export class GatePage implements OnInit {
   user
 
   constructor(public router: Router) { 
+    
+  }
+
+  ngOnInit() {
     //if user is not logged in
     if(sessionStorage.getItem("manager_access_data") === null){
       this.router.navigateByUrl('/login')
@@ -24,9 +28,6 @@ export class GatePage implements OnInit {
         this.router.navigateByUrl('/engineerboard')
       }
     }
-  }
-
-  ngOnInit() {
   }
 
 }

@@ -54,7 +54,7 @@ export class AdminboardPage implements OnInit {
   }
 
   connectToWebsocket(){
-    var ws = webSocket('ws://185.22.64.115:4004/api/ws');
+    var ws = webSocket('ws://localhost:4004/api/ws');
 
     ws.subscribe(
       msg => {
@@ -68,11 +68,25 @@ export class AdminboardPage implements OnInit {
             this.filter(this.currentRequests[i]);
           }
         }else if(obj.insert){
+          console.log(obj.insert)
           this.filter(obj.insert);
           this.currentRequests.unshift(obj.insert);
         }else if(obj.update){
+
           this.filter(obj.update);
-          this.currentRequests[obj.update.id] = obj.update
+
+          var index = this.currentRequests.findIndex(function(el) {
+            return el.id == obj.update.id
+          });
+
+          this.currentRequests.splice(index, 1)
+          this.currentRequests.unshift(obj.update);
+          this.currentRequests.sort(function(a, b) {
+            if (a.id < b.id) return 1;
+            if (a.id > b.id) return -1;
+            return 0;
+          })     
+
         }
       }, // Called whenever there is a message from the server.
 
@@ -84,8 +98,9 @@ export class AdminboardPage implements OnInit {
     );
   }
 
+  
+
   filter(item){
-    console.log(item);
     item.createdTime = item.createdTime.replace('T',' ')
     item.createdTime = item.createdTime.replace('Z','')
     item.lastUpdatedTime = item.lastUpdatedTime.replace('T',' ')
@@ -113,7 +128,6 @@ export class AdminboardPage implements OnInit {
       }
     }
 
-    console.log(item);
   }
 
   openMenu(){
@@ -142,6 +156,24 @@ export class AdminboardPage implements OnInit {
 
   ngOnInit() {
     setTimeout(()=>{this.loaded=true},500);
+  }
+
+  directSpec(request_id){
+    var response = this.api.sendGetRequestWithAuth("/admin/requests/accept/"+ request_id)
+    response.subscribe(data=> {
+      this.router.navigateByUrl('/adminboard')
+    }, error=> {
+      this.api.apiErrorHandlingManager(error)
+    });
+  }
+
+  confirmRequest(request_id) {
+    var response = this.api.sendGetRequestWithAuth("/admin/requests/finish/"+ request_id)
+    response.subscribe(data=> {
+      this.router.navigateByUrl('/adminboard')
+    }, error=> {
+      this.api.apiErrorHandlingManager(error)
+    });
   }
 
 }

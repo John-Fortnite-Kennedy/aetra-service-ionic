@@ -51,31 +51,31 @@
       </tr>
       <tr class="data" *ngFor="let item of this.currentRequests" (click)="call(item.id)">
         <td>
-          {{item.id}}
+          {{item?.id}}
         </td>
         <td>
-          <div class="cab">{{item.zone.name}}</div>
+          <div class="cab">{{item?.zone.name}}</div>
         </td>
         <td>
-          {{item.spec.name.String}}
+          {{item?.spec.name.String}}
         </td>
         <td class="center">
           <div class="user">
-            <span *ngIf="item.user.name!=''">
-              {{item.user.surname}}&nbsp;{{item.user.name}}
+            <span *ngIf="item?.user.name!=''">
+              {{item?.user.surname}}&nbsp;{{item?.user.name}}
             </span>
-            {{item.user.phone}}
+            {{item?.user.phone}}
           </div>
         </td>
         <td class="center">
-          <ion-button *ngIf="item.badge == 1" class="Wanted">Требуется специалист</ion-button>
-          <ion-button *ngIf="item.badge == 2" disabled="true" class="Sent">Отправлено специалисту</ion-button>
-          <ion-button *ngIf="item.badge == 3" disabled="true" class="inProcess">В процессе</ion-button>
-          <ion-button *ngIf="item.badge == 4" class="Done">Специлист выполнил</ion-button>
-          <ion-button *ngIf="item.badge == 5" disabled="true" class="Wait">Ждем подтверждения</ion-button>
-          <ion-button *ngIf="item.badge == 6" disabled="true" class="Completed">Выполнено</ion-button>
-          <ion-button *ngIf="item.badge == 7" disabled="true" class="Delayed">Отсрочено</ion-button>
-          <ion-button *ngIf="item.badge == 8" disabled="true" class="Choose">Выбрать специалиста</ion-button>
+          <ion-button *ngIf="item?.badge == 1" class="Wanted" (click)="directSpec(item?.id)">Требуется специалист</ion-button>
+          <ion-button *ngIf="item?.badge == 2" disabled="true" class="Sent">Отправлено специалисту</ion-button>
+          <ion-button *ngIf="item?.badge == 3" disabled="true" class="inProcess">В процессе</ion-button>
+          <ion-button *ngIf="item?.badge == 4" class="Done" (click)="confirmRequest(item?.id)">Подтвердить выполнение специалиста</ion-button>
+          <ion-button *ngIf="item?.badge == 5" disabled="true" class="Wait">Ждем подтверждения</ion-button>
+          <ion-button *ngIf="item?.badge == 6" disabled="true" class="Completed">Выполнено</ion-button>
+          <ion-button *ngIf="item?.badge == 7" disabled="true" class="Delayed">Отсрочено</ion-button>
+          <ion-button *ngIf="item?.badge == 8" disabled="true" class="Choose" (click)="call(item?.id)">Выбрать специалиста</ion-button>
         </td>
         <!--
         <td class="center">
@@ -85,24 +85,24 @@
               <ion-icon name="settings"></ion-icon>
             </ion-fab-button>
             <ion-fab-list side="end">
-              <ion-fab-button *ngIf="item.badge == 1">Направить специалиста</ion-fab-button>
-              <ion-fab-button *ngIf="item.badge == 4">Подтвердить выполнение</ion-fab-button>
+              <ion-fab-button *ngIf="item?.badge == 1">Направить специалиста</ion-fab-button>
+              <ion-fab-button *ngIf="item?.badge == 4">Подтвердить выполнение</ion-fab-button>
             </ion-fab-list>
           </ion-fab>
           
-          <button *ngIf="item.badge == 1">Направить специалиста</button>
-          <button *ngIf="item.badge == 4">Подтвердить выполнение</button>
+          <button *ngIf="item?.badge == 1">Направить специалиста</button>
+          <button *ngIf="item?.badge == 4">Подтвердить выполнение</button>
         </td>
         -->
         <td>
-          {{item.text}}
+          {{item?.text}}
         </td>
         <td class="end">
-          {{item.createdTime}}
+          {{item?.createdTime}}
         </td>
         
         <td class="end">
-          {{item.lastUpdatedTime}}
+          {{item?.lastUpdatedTime}}
         </td>
       </tr>
     </table>
