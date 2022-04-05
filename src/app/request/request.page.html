@@ -1,0 +1,32 @@
+<ion-header>
+  
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Необходимый специалист</ion-label>
+    <ion-select [(ngModel)]="specId" placeholder="">
+      <ion-select-option *ngFor="let item of allSpecs" value="{{item.id}}">{{item.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Текст заявки</ion-label>
+    <ion-textarea [(ngModel)]="text"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Номер телефона</ion-label>
+    <ion-input [(ngModel)]="phoneNumber"></ion-input>
+  </ion-item>
+
+  <div *ngIf="file==null">
+    <input type="file" [disabled]="file!=null" id="file-upload" (change)="fileUpload($event)">
+  </div>
+  <div *ngIf="file!=null">
+    Файл загружен
+  </div>
+
+  <ion-button (click)="newRequest()">Отправить</ion-button>
+
+</ion-content>

@@ -52,9 +52,10 @@ const routes: Routes = [
     loadChildren: () => import('./codeconfirmation/codeconfirmation.module').then( m => m.CodeconfirmationPageModule)
   },
   {
-    path: 'create-request/:id',
+    path: 'newrequest/:id',
     loadChildren: () => import('./create-request/create-request.module').then( m => m.CreateRequestPageModule)
-  },  {
+  },
+  {
     path: 'details',
     loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
   },
