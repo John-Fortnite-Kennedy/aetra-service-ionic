@@ -67,6 +67,7 @@ export class MasterboardPage implements OnInit {
     var response = this.api.sendGetRequestWithAuth("/spec/accept/"+ request_id)
     response.subscribe(data=> {
       this.router.navigateByUrl('/masterboard')
+      this.refresh()
     }, error=> {
       this.api.apiErrorHandlingManager(error)
     });
@@ -77,10 +78,11 @@ export class MasterboardPage implements OnInit {
     var response = this.api.sendGetRequestWithAuth("/spec/finish/"+ request_id)
     response.subscribe(data=> {
       this.router.navigateByUrl('/masterboard')
+      this.refresh()
     }, error=> {
       this.api.apiErrorHandlingManager(error)
     });
-    this.refresh()
+    
   }
 
   refresh(){

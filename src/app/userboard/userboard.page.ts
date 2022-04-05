@@ -57,6 +57,10 @@ export class UserboardPage implements OnInit {
     })
   }
 
+  refresh(){
+    window.location.reload();
+  }
+
   save(){
     var data = {
       "name":this.username,
@@ -77,9 +81,11 @@ export class UserboardPage implements OnInit {
       response.subscribe(data=> {
         console.log(data['payload'])
         this.router.navigateByUrl('/userboard')
+        this.refresh()
       }, error=> {
         this.api.apiErrorHandlingUser(error)
     });
+    
   }
 
   filter(item){
