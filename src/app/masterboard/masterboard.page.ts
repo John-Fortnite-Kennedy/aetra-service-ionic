@@ -43,12 +43,22 @@ export class MasterboardPage implements OnInit {
       response.subscribe(async data => {
         console.log(data);
         this.allrequests = data['payload']
+        for(let item of this.allrequests){
+          this.loadFiles(item)
+        } 
 
       }, error => {
         this.api.apiErrorHandlingManager(error)
       })
     }, error => {
       this.api.apiErrorHandlingManager(error)
+    })
+  }
+
+  loadFiles(item){
+    var response = this.api.sendGetRequest("/common/getAllFilesByRequestId/"+item.id)
+    response.subscribe(data => {
+      item.fileUrl = "http://185.22.64.115:4004/api/"+data['payload'][0].path
     })
   }
 

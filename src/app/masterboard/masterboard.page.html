@@ -20,8 +20,6 @@
           {{item.user.phone}}
           <h4>Зона:</h4>
           {{item.zone.name}}
-          <h4>Файлы:</h4>
-          {{item.text}}
           <h4>Текст:</h4>
           {{item.text}}
         </ion-text>
@@ -32,9 +30,10 @@
           <ion-button *ngIf="item.acceptedByManager && item.acceptedBySpec && item.finishedBySpec && item.finishedByManager && !item.acceptedByUser" disabled="true">Выполнено</ion-button>
           <ion-button *ngIf="item.acceptedByManager && item.acceptedBySpec && item.finishedBySpec && item.finishedByManager && item.acceptedByUser" disabled="true">Принято заявителем</ion-button>
         </div>
-        
-
-        
+        <div *ngIf="item.fileUrl!=undefined">
+          <h4>Прикрепенные фото:</h4>
+          <img src="{{item.fileUrl}}" alt="">
+        </div>
       </ion-card-content>
     </ion-card>
   </div>
