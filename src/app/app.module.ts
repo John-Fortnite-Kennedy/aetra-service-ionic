@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
+import { ChartPageModule } from './chart/chart.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
+    ChartPageModule,
     AppRoutingModule,
     HttpClientModule,
   ],
