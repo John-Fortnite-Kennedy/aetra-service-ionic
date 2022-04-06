@@ -48,6 +48,16 @@
                 </div>
               </ion-label>
             </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <div class="text">
+                  <ion-text>
+                    Комментарий менеджера:
+                  </ion-text>
+                  {{item.managerComment}}
+                </div>
+              </ion-label>
+            </ion-item>
             <div style="width: 100%;display: flex;justify-content: center;text-transform: none;" *ngIf="item.badge == 3 && !done">
               <ion-button (click)="accept(item.id);do()">Принять выполнение заявки</ion-button>
             </div>
