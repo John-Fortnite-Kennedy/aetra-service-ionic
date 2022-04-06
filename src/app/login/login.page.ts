@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
   constructor(public api: ApiService, public router: Router) { }
 
   ngOnInit() {
+    sessionStorage.removeItem('manager_access_data');
   }
 
   tryAuth(login, password){
@@ -22,6 +23,7 @@ export class LoginPage implements OnInit {
       "login": login,
       "password": password
     }
+    console.log(data)
     var response = this.api.sendPostRequest(data, "/common/login")
     response.subscribe(data => {
       sessionStorage.setItem('manager_access_data', JSON.stringify(data['payload']))

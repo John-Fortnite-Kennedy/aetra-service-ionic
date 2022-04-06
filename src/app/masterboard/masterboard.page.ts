@@ -39,7 +39,7 @@ export class MasterboardPage implements OnInit {
       console.log(this.master_personal_data);
 
       // Get all requests
-      var response = this.api.sendGetRequestWithAuth("/spec/acceptedRequests/extended/"+this.master_personal_data.spec_id.Int64)
+      var response = this.api.sendGetRequestWithAuth("/spec/acceptedRequests/extended")
       response.subscribe(async data => {
         console.log(data);
         this.allrequests = data['payload']

@@ -18,8 +18,10 @@
           <h4>Номер заявителя:</h4>
           <h3 *ngIf="item.user.name != ''">{{item.user.name}}&nbsp;{{item.user.surname}}</h3>
           {{item.user.phone}}
-          <h4>Зона:</h4>
+          <h4>Кабинет:</h4>
           {{item.zone.name}}
+          <h4>Сервис:</h4>
+          {{item.spec.name.String}}
           <h4>Текст:</h4>
           {{item.text}}
         </ion-text>
