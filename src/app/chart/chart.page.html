@@ -1,14 +1,41 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>chart</ion-title>
+  <ion-toolbar>    
+    <ion-list slot="end" lines="full" class="list">
+      <ion-item lines="none" (click)="navigate('/adminboard')" button="true">
+        <ion-icon name="home" slot="start" class="mi"></ion-icon>
+        <ion-label>Главная</ion-label>
+      </ion-item>
+      <ion-item lines="none"  (click)="navigate('/adminboard/allrequests')" button="true">
+        <ion-icon name="albums" slot="start" class="mi"></ion-icon>
+        <ion-label>Активные заявки</ion-label>
+      </ion-item>
+      <ion-item lines="none"  (click)="navigate('/adminboard/finishedrequests')" button="true">
+        <ion-icon name="briefcase" slot="start" class="mi"></ion-icon>
+        <ion-label>Завершенные</ion-label>
+      </ion-item>
+      <ion-item lines="none" (click)="navigate('/adminboard/charts')" button="true">
+        <ion-icon name="stats-chart" slot="start" class="mi"></ion-icon>
+        <ion-label>Статистика</ion-label>
+      </ion-item>
+      <ion-item lines="none" (click)="navigate('/adminboard/report')" button="true">
+        <ion-icon name="document" slot="start" class="mi"></ion-icon>
+        <ion-label>Отчеты</ion-label>
+      </ion-item>
+      <ion-item lines="none" (click)="leave()" button="true">
+        <ion-icon name="exit" slot="start" class="mi"></ion-icon>
+        <ion-label>Выход</ion-label>
+      </ion-item>
+     </ion-list>  
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div style="width: 800px; height: 400px;">
-    <canvas #lineCanvas width="800px" height="400px"></canvas>
-  </div>
-  <div style="width: 800px; height: 400px;">
-    <canvas #barCanvas width="800px" height="400px"></canvas>
+<ion-content [fullscreen]="true">
+  <div style="width:100%;height:100%;padding:4rem;">
+    <div style="width: 800px; height: 400px;">
+      <canvas #lineCanvas width="800px" height="400px"></canvas>
+    </div>
+    <div style="width: 800px; height: 400px;">
+      <canvas #barCanvas width="800px" height="400px"></canvas>
+    </div>
   </div>
 </ion-content>

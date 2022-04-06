@@ -9,7 +9,7 @@ import { ApiService } from '../api.service';
 })
 export class ReportPage implements OnInit {
 
-  admin_access_data
+  admin_access_data;
 
   constructor(public router: Router, public api: ApiService) { 
     // Configure router
@@ -32,6 +32,16 @@ export class ReportPage implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  navigate(url){
+    this.router.navigateByUrl(url);
+  }
+
+  leave() {
+    sessionStorage.removeItem('manager_access_data');
+    this.router.navigateByUrl('/login');
   }
 
 }

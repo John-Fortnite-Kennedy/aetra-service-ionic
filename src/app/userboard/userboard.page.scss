@@ -1,6 +1,8 @@
+ion-content{
+    --background: #9EC2FF;
+}
 .content{
     height: 100%;
-    background-color: #9EC2FF;
 
     .registration{
         background: rgba(255,255,255,1);
@@ -71,12 +73,19 @@
                     --border-color: transparent;
                 }
 
+                ion-item:first-child{
+                    --inner-padding-top: 1rem;
+                }
+
                 ion-item{
+                    height: auto;
                     .text{
                         display: flex;
                         flex-direction: column;
+                        height: auto;
 
                         ion-text{
+                            height: auto;
                             font-size: 1rem;
                             font-weight: 600;
                             padding-bottom: 0.2rem;

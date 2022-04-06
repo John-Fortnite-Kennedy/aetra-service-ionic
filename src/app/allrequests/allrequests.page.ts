@@ -9,8 +9,8 @@ import { ApiService } from '../api.service';
 })
 export class AllrequestsPage implements OnInit {
 
-  admin_access_data
-  admin_personal_data
+  admin_access_data;
+  admin_personal_data;
 
   constructor(public router: Router, public api: ApiService) { 
 
@@ -33,6 +33,15 @@ export class AllrequestsPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  navigate(url){
+    this.router.navigateByUrl(url);
+  }
+
+  leave() {
+    sessionStorage.removeItem('manager_access_data');
+    this.router.navigateByUrl('/login');
   }
 
 }
