@@ -56,6 +56,14 @@
         </ion-item>
       </ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item class="ion-no-padding" lines="none" class="buttons">
+          <ion-button slot="end" size="large" color="danger">Отсрочить</ion-button>
+          <ion-button slot="start" size="large" color="success">Сохранить</ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
     <ion-row *ngIf="requestInfo?.fileUrl!=undefined">
       <ion-col>
         <h4 class="attr">Прикрепенные фото:</h4>

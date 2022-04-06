@@ -1,9 +1,89 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>report</ion-title>
+  <ion-toolbar>    
+    <ion-list slot="end" lines="full" class="list">
+      <ion-item lines="none" (click)="navigate('/adminboard')" button="true">
+        <ion-icon name="home" slot="start" class="mi"></ion-icon>
+        <ion-label>Главная</ion-label>
+      </ion-item>
+      <ion-item lines="none"  (click)="navigate('/adminboard/allrequests')" button="true">
+        <ion-icon name="albums" slot="start" class="mi"></ion-icon>
+        <ion-label>Активные заявки</ion-label>
+      </ion-item>
+      <ion-item lines="none"  (click)="navigate('/adminboard/finishedrequests')" button="true">
+        <ion-icon name="briefcase" slot="start" class="mi"></ion-icon>
+        <ion-label>Завершенные</ion-label>
+      </ion-item>
+      <ion-item lines="none" (click)="navigate('/adminboard/charts')" button="true">
+        <ion-icon name="stats-chart" slot="start" class="mi"></ion-icon>
+        <ion-label>Статистика</ion-label>
+      </ion-item>
+      <ion-item lines="none" (click)="navigate('/adminboard/report')" button="true">
+        <ion-icon name="document" slot="start" class="mi"></ion-icon>
+        <ion-label>Отчеты</ion-label>
+      </ion-item>
+      <ion-item lines="none" (click)="leave()" button="true">
+        <ion-icon name="exit" slot="start" class="mi"></ion-icon>
+        <ion-label>Выход</ion-label>
+      </ion-item>
+     </ion-list>  
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <div class="content">
+    <div>
+      <h2 class="py-4">Отчет</h2>
 
+      <span class="bg-primary p-2 pe-none w-100 d-flex rounded-top">
+        <div class="col-8 fs-4 d-flex text-white justify-content-around">
+          От :<input type="date" [(ngModel)]="after_time" id="start" name="trip-start" min="2021-01-01" class="form-control w-auto d-inline-block pe-auto">
+          До :<input type="date" [(ngModel)]="before_time" id="start" name="trip-start" min="2021-01-01" class="form-control w-auto d-inline-block pe-auto">
+        </div>
+
+        <div class="col-4 d-flex justify-content-around">
+          <button class="btn btn-light pe-auto" (click)="refresh()">Обновить</button>
+          <button class="btn btn-light pe-auto" (click)="reset()">Обнулить</button>
+        </div>
+      </span>
+
+      <div *ngIf="reportMap" id="report" #report>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Служба</th>
+              <th>Подано заявок</th>
+              <th>Принято диспетчером</th>
+              <th>Принято специалистом</th>
+              <th>Выполнено специалистом</th>
+              <th>Подтверждено диспетчером</th>
+              <th>Подтверждено заявителем</th>
+              <th>Отсрочено</th>
+            </tr>
+          </thead>
+
+          <tbody *ngFor="let item of reportMap | keyvalue;">
+            <tr>
+              <td>{{item.key}}</td>
+              <td>{{item.value.requests}}</td>
+              <td>{{item.value.acceptedByManager}}</td>
+              <td>{{item.value.acceptedBySpec}}</td>
+              <td>{{item.value.finishedBySpec}}</td>
+              <td>{{item.value.finishedByManager}}</td>
+              <td>{{item.value.acceptedByUser}}</td>
+              <td>{{item.value.delayed}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="d-flex flex-column">
+          Отчет был сформирован: {{this.current_time.toLocaleString()}}, Диспетчером {{admin_personal_data?.surname}} {{admin_personal_data?.name}}. <br>
+          Указанный временной период:
+          <span *ngIf="saved_after_time!=null && saved_before_time!=null">{{saved_after_time}} - {{saved_before_time}}</span>
+          <span *ngIf="saved_after_time==null && saved_before_time==null">Отсутствует</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" (click)="makePDF()">Export To PDF</button>
+    </div>
+  </div>
 </ion-content>

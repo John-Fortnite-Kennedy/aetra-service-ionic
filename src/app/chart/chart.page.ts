@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
-import { Chart, registerables } from 'chart.js'
+import { Chart, registerables } from 'chart.js';
+
 
 @Component({
   selector: 'app-chart',
@@ -13,10 +14,9 @@ export class ChartPage implements OnInit {
   @ViewChild('lineCanvas') private lineCanvas: ElementRef;
   @ViewChild('barCanvas') private barCanvas: ElementRef;
 
-  admin_access_data
-
-  linechart
-  barchart
+  admin_access_data;
+  linechart;
+  barchart;
 
   constructor(public router: Router, public api: ApiService) { 
 
@@ -161,6 +161,16 @@ export class ChartPage implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  navigate(url){
+    this.router.navigateByUrl(url);
+  }
+
+  leave() {
+    sessionStorage.removeItem('manager_access_data');
+    this.router.navigateByUrl('/login');
   }
 
 }

@@ -4,12 +4,12 @@
       <ion-text>
         <h3>Завершить регистрацию:</h3>
       </ion-text>
-      <ion-item>
+      <ion-item lines="none">
         <ion-label position="stacked">Имя</ion-label>
         <ion-input [(ngModel)]="username"></ion-input>
       </ion-item>
       <br>
-      <ion-item>
+      <ion-item lines="none">
         <ion-label position="stacked">Фамилия</ion-label>
         <ion-input [(ngModel)]="usersurname"></ion-input>
       </ion-item>
@@ -28,35 +28,35 @@
           </ion-item>
       
           <ion-list slot="content">
-            <ion-item>
-              <ion-label>
+            <ion-item lines="none">
+              
                 <div class="text">
                   <ion-text>
                     Состояние заявки:
                   </ion-text>
-                  {{item.response_text}}
+                  <p>{{item.response_text}}</p>                  
                 </div>
-              </ion-label>
+              
             </ion-item>
             <ion-item lines="none">
-              <ion-label>
+              
                 <div class="text">
                   <ion-text>
                     Текст заявки:
                   </ion-text>
-                  {{item.text}}
+                  <p>{{item.text}}</p>
                 </div>
-              </ion-label>
+              
             </ion-item>
-            <ion-item lines="none">
-              <ion-label>
+            <ion-item lines="none" *ngIf="item.managerComment!=''">
+              
                 <div class="text">
                   <ion-text>
                     Комментарий менеджера:
                   </ion-text>
-                  {{item.managerComment}}
+                  <p>{{item.managerComment}}</p>
                 </div>
-              </ion-label>
+              
             </ion-item>
             <div style="width: 100%;display: flex;justify-content: center;text-transform: none;" *ngIf="item.badge == 3 && !done">
               <ion-button (click)="accept(item.id);do()">Принять выполнение заявки</ion-button>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { webSocket } from 'rxjs/webSocket';
-import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { ModalController } from '@ionic/angular';
@@ -18,10 +17,9 @@ export class AdminboardPage implements OnInit {
 
   admin_access_data;
   admin_personal_data;
-  loaded = false;
 
 
-  constructor(private menu: MenuController, public router: Router, public api: ApiService,  public modalCtrl: ModalController) { 
+  constructor(public router: Router, public api: ApiService,  public modalCtrl: ModalController) { 
 
     // Configure router
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -130,18 +128,6 @@ export class AdminboardPage implements OnInit {
 
   }
 
-  openMenu(){
-    this.menu.enable(true);
-    this.menu.open();
-  }
-
-  onClose() {
-    var fabs = document.querySelectorAll('ion-fab');
-    for (var i = 0; i < fabs.length; i++) {
-      fabs[i].activated = false;
-    }
-  }
-
   async call(val){
     const modal = await this.modalCtrl.create({
       component: DetailsPage,
@@ -155,7 +141,7 @@ export class AdminboardPage implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(()=>{this.loaded=true},500);
+
   }
 
   directSpec(request_id){
@@ -174,6 +160,15 @@ export class AdminboardPage implements OnInit {
     }, error=> {
       this.api.apiErrorHandlingManager(error)
     });
+  }
+
+  navigate(url){
+    this.router.navigateByUrl(url);
+  }
+
+  leave() {
+    sessionStorage.removeItem('manager_access_data');
+    this.router.navigateByUrl('/login');
   }
 
 }

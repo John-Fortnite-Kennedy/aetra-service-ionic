@@ -146,54 +146,6 @@
     text-align: end !important;
 }
 
-.menuContent{
+.list{
     display: flex;
-    flex-direction: row;
-  }
-  
-  .marker{
-    height: 100%;
-    width: 2rem;
-    background: transparent;
-    position: absolute;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-  
-    .marker-box{
-      width: 100%;
-      height: 25%;
-      background-color: #056DFE;
-      border-top-right-radius: 2rem;
-      border-bottom-right-radius: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-  
-      ion-icon{
-        font-size: 2rem;
-        color: white;
-      }
-    }
-  }
-  
-  ion-menu{
-    --width:20%;
-    --background:white;
-    
-  }
-
-  ion-fab{
-      position: relative;
-      transform: scale(0.8);
-
-      ion-fab-list ion-fab-button{
-        transform: scale(1.8);
-        width: 8rem;
-        font-size: 0.6rem;
-        --border-radius: 1rem;
-        margin-left: 1.5rem;
-        margin-right: 1.5rem;
-      }
-  }
+}
