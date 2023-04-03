@@ -1,14 +1,47 @@
 <ion-content fullscreen="true">
-  <div class="content">
+  <!-- <div class="content">
     <div class="wrapper">
     <div class="loginForm">
-      <ion-input [(ngModel)]="login" type="email" placeholder="Почта"></ion-input>
+      <ion-input [(ngModel)]="phone" type="email" placeholder="Телефон"></ion-input>
       <ion-input [(ngModel)]="password" type="password" placeholder="Пароль"></ion-input>
-      <ion-button type="subimt" expand="block" [disabled]="login=='' || password==''" (click)="tryAuth(login, password)">Войти</ion-button>
+      <ion-button type="subimt" expand="block" [disabled]="phone=='' || password==''" (click)="tryAuth(phone, password)">{{segmentValue}}</ion-button>
     </div>
+    <ion-segment value="логин" mode="ios" style="margin-top: 1rem;" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="Логин">
+        <ion-label>Логин</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Регистрация">
+        <ion-label>Регистрация</ion-label>
+      </ion-segment-button>
+    </ion-segment>
     <div class="loginFooter">
       <a href="">Забыли Пароль?</a>
     </div>
   </div>
-  </div>
+  </div> -->
+  <ion-card style="height: 50%;">
+    <ion-card-content style="display: flex;height: 100%;padding: 0;background-color: lightblue;" id="wrap">
+
+      <div id="sign" class="signIn" style="height:100%;width: 60%;background-color: lightblue;display: flex;justify-content: center;align-items: center;z-index: 1;">
+        <div class="wrapper">
+          <div class="loginForm" *ngIf="action">
+            <ion-input [(ngModel)]="phone" type="email" placeholder="Телефон"></ion-input>
+            <ion-input [(ngModel)]="password" type="password" placeholder="Пароль"></ion-input>
+            <ion-button type="subimt" expand="block" [disabled]="phone=='' || password==''" (click)="tryAuth(phone, password)">{{segmentValue}}</ion-button>
+          </div>
+          <div class="loginForm" *ngIf="!action">
+            <ion-input [(ngModel)]="phone" type="email" placeholder="Телефон"></ion-input>
+            <ion-button type="subimt" expand="block" [disabled]="phone==''" (click)="tryAuth(phone, password)">Регистрация</ion-button>
+          </div>
+          <div class="loginFooter" *ngIf="action">
+            <a href="">Забыли Пароль?</a>
+          </div>
+        </div>
+      </div>
+      <div id="reg" class="signUp" style="height:100%;width: 40%;background-color: lightgreen;z-index: 2;display: flex;align-items: center;justify-content: center;">
+        <ion-button type="button" expand="block" (click)="swap()">{{action? "Регистрация" : "Логин"}}</ion-button>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>
